@@ -1,7 +1,16 @@
 package com.lukaslechner.memoryleakexample
 
 object GlobalSingleton {
-    val listeners = mutableListOf<GlobalSingletonListener>()
+
+    private val listeners = mutableListOf<GlobalSingletonListener>()
+
+    fun register(listener: GlobalSingletonListener) {
+        listeners.add(listener)
+    }
+
+    fun unregister(listener: GlobalSingletonListener) {
+        listeners.remove(listener)
+    }
 }
 
 interface GlobalSingletonListener {
